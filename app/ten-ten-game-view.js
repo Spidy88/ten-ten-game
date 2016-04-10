@@ -1,14 +1,18 @@
-import React, { Component, PropTypes } from 'react'
-const TenTenGame = require('./ten-ten-game');
+import React, { Component, PropTypes } from 'react';
+import TenTenGame from './ten-ten-game';
+import TenTenScoreView from './ten-ten-score-view';
 
 class TenTenGameView extends Component {
     // propTypes: {
     //     game: PropTypes.instanceOf(TenTenGame).isRequired
-    // },
+    // }
 
     render() {
         return (
-            <div>TenTen game instance</div>
+            <section>
+                <div>TenTen game instance of amazingness</div>
+                <TenTenScoreView></TenTenScoreView>
+            </section>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
-const TenTenAppView = require('./ten-ten-app-view');
+import { render } from 'react-dom';
+import TenTenAppView from './ten-ten-app-view';
 
-ReactDOM.render(<TenTenAppView />, document.querySelector('#app'));
+render(<TenTenAppView />, document.querySelector('#app'));

@@ -1,16 +1,18 @@
-import React, { Component, PropTypes } from 'react'
-const TenTenGame = require('./ten-ten-game');
-const TenTenGameView = require('./ten-ten-game-view');
+import React, { Component, PropTypes } from 'react';
+import TenTenGame from './ten-ten-game';
+import TenTenGameView from './ten-ten-game-view';
 
-const TenTenAppView = React.createClass({
-    getInitialState: function() {
-        return {
+class TenTenAppView extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
             isGameInProgress: false,
-            gameInstance: new TenTenGame()
+            gameInstance: null
         };
-    },
+    }
 
-    startGame: function() {
+    startGame() {
         let isGameInProgress = true;
         let gameInstance = new TenTenGame();
 
@@ -18,10 +20,10 @@ const TenTenAppView = React.createClass({
             isGameInProgress,
             gameInstance
         });
-    },
+    }
 
-    render: function() {
-        let view = <button onClick={ this.startGame }>Start a New Game</button>;;
+    render() {
+        let view = <button onClick={ () => this.startGame() }>Start a New Game</button>;
 
         if( this.state.isGameInProgress ) {
             view = <TenTenGameView game={ this.state.gameInstance } ></TenTenGameView>;
@@ -34,6 +36,6 @@ const TenTenAppView = React.createClass({
             </section>
         );
     }
-});
+}
 
 export default TenTenAppView;
