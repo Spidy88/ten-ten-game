@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TenTenScoreView extends Component {
+class ScoreView extends Component {
     constructor(props) {
         super(props);
 
@@ -14,4 +14,4 @@ class TenTenScoreView extends Component {
     }
 }
 
-export default TenTenScoreView;
+export default ScoreView;

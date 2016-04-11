@@ -1,5 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom';
-import TenTenAppView from './ten-ten-app-view';
+import AppView from './app-view';
 
-render(<TenTenAppView />, document.querySelector('#app'));
+render(<AppView />, document.querySelector('#app'));

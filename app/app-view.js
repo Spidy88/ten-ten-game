@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import TenTenGame from './ten-ten-game';
-import TenTenGameView from './ten-ten-game-view';
+import Game from './game';
+import GameView from './game-view';
 
-class TenTenAppView extends Component {
+class AppView extends Component {
     constructor(props) {
         super(props);
 
@@ -14,7 +14,7 @@ class TenTenAppView extends Component {
 
     startGame() {
         let isGameInProgress = true;
-        let gameInstance = new TenTenGame();
+        let gameInstance = new Game();
 
         this.setState({
             isGameInProgress,
@@ -26,7 +26,7 @@ class TenTenAppView extends Component {
         let view = <button onClick={ () => this.startGame() }>Start a New Game</button>;
 
         if( this.state.isGameInProgress ) {
-            view = <TenTenGameView game={ this.state.gameInstance } ></TenTenGameView>;
+            view = <GameView game={ this.state.gameInstance } ></GameView>;
         }
 
         return (
@@ -38,4 +38,4 @@ class TenTenAppView extends Component {
     }
 }
 
-export default TenTenAppView;
+export default AppView;
