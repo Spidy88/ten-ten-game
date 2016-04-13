@@ -14,6 +14,10 @@ class PlayField {
         }
     }
 
+    getCellAt(position) {
+        return this.grid[position.row][position.col];
+    }
+
     isEmptyAt(position) {
         return this.grid[position.row][position.col].isEmpty;
     }

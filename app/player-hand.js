@@ -1,10 +1,9 @@
 class PlayerHand {
-    constructor(size) {
-        this.size = size;
+    constructor(handSize) {
         this.pieces = [];
     }
 
-    handSize() {
+    getHandSize() {
         return this.pieces.length;
     }
 

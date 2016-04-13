@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import Game from './game';
 import GameView from './game-view';
 
+import {SmallCorner} from './pieces';
+
 class AppView extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +16,12 @@ class AppView extends Component {
 
     startGame() {
         let isGameInProgress = true;
-        let gameInstance = new Game();
+        let gameInstance = new Game(5);
+
+        let piece = new SmallCorner();
+        piece.rotate(2);
+        gameInstance.placePiece(new SmallCorner(), { row: 0, col: 0 });
+        gameInstance.placePiece(piece, { row: 2, col: 2 });
 
         this.setState({
             isGameInProgress,

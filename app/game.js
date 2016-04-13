@@ -10,12 +10,18 @@ const DEFAULT_HAND_SIZE = 3;
 const MIN_GRID_SIZE = 5;
 const MIN_HAND_SIZE = 1;
 
+// TODO: REMOVE
+import { SmallCorner, SmallLine, Dot } from './pieces';
+
 class Game {
     constructor(gridSize = DEFAULT_GRID_SIZE, handSize = DEFAULT_HAND_SIZE) {
         Object.defineProperty(this, 'playField', { value: new PlayField(gridSize) });
         Object.defineProperty(this, 'playerHand', { value: new PlayerHand(handSize) });
 
+        this.maxHandSize = handSize;
         this.gameOver = false;
+
+        this.reloadPlayerHand();
     }
 
     // Returns a PlayerHand
@@ -26,6 +32,22 @@ class Game {
     // Return a PlayField
     getPlayField() {
         return this.playField;
+    }
+
+    reloadPlayerHand() {
+        /*
+        while( this.playerHand.getHandSize() < this.maxHandSize ) {
+            // TODO: Generate random piece with random rotation
+            // TODO: Give to player
+        }
+        */
+
+        // TODO: REMOVE
+        let piece = new SmallLine();
+        piece.rotate(1);
+        this.playerHand.givePiece(new SmallCorner());
+        this.playerHand.givePiece(piece);
+        this.playerHand.givePiece(new Dot());
     }
 
     // Places a piece on the play field
@@ -45,7 +67,7 @@ class Game {
                 }
 
                 let cellPosition = new Position(placeRow + row, placeCol + col);
-                let cell = new Cell(false);
+                let cell = new Cell(false, piece.color);
 
                 this.playField.setCell(cellPosition, cell);
             }

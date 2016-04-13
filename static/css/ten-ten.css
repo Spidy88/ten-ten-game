@@ -1,0 +1,36 @@
+.cell {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    outline: 1px solid black;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.block_blue {
+    background-image: url('/images/block_blue.png');
+}
+
+.block_orange {
+    background-image: url('/images/block_orange.png');
+}
+
+.block_gray {
+    background-image: url('/images/block_gray.png');
+}
+
+.block_green {
+    background-image: url('/images/block_green.png');
+}
+
+.player-hand {
+    display: inline-block;
+    min-height: 100px;
+    min-width: 150px;
+    outline: 1px solid black;
+}
+
+.player-piece {
+    display: inline-block;
+    margin: 20px 10px;
+}

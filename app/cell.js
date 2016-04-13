@@ -1,6 +1,7 @@
 class Cell {
-    constructor(isEmpty) {
+    constructor(isEmpty, color) {
         this.isEmpty = isEmpty;
+        this.color = color;
     }
 }
 
