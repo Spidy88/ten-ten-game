@@ -23,6 +23,7 @@ class PlayField {
     }
 
     setCell(position, cell) {
+        console.log(`Setting position: ${position.row}, ${position.col}`);
         if( !(cell instanceof(Cell)) ) {
             throw new Error('Cannot set cell to value that is not an instance of Cell');
         }

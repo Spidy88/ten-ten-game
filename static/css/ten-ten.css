@@ -32,5 +32,13 @@
 
 .player-piece {
     display: inline-block;
-    margin: 20px 10px;
+    padding: 20px 10px;
+}
+
+.player-piece.selected {
+    background-color: rgb(195, 231, 255);
+}
+
+.dib {
+    display: inline-block;
 }

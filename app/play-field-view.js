@@ -8,25 +8,34 @@ class PlayFieldView extends Component {
         super(props);
     }
 
+    selectCell(cell, position) {
+        console.log('[PlayFieldView] Cell selected');
+        this.props.onCellSelect(cell, position);
+    }
+
     render() {
         let playField = this.props.playField;
         let size = playField.size;
         let field = [];
 
-        // TODO: REMOVE (probably)
-        for( let i = 0; i < size; i++ ) {
+        for( let row = 0; row < size; row++ ) {
             let cells = [];
 
-            for( let j = 0; j < size; j++ ) {
-                let position = new Position(i, j);
+            for( let col = 0; col < size; col++ ) {
+                let position = new Position(row, col);
+                let cell = playField.getCellAt(position);
 
                 cells.push(
-                    <CellView key={ `cell-${i}.${j}` } cell={ playField.getCellAt(position) }></CellView>
+                    <div key={ `cell-${row}.${col}` } 
+                         className="dib"
+                         onClick={ this.selectCell.bind(this, cell, position) }>
+                        <CellView cell={ cell }></CellView>
+                    </div>
                 );
             }
 
             field.push(
-                <div key={ `row-${i}` } className="row">{ cells }</div>
+                <div key={ `row-${row}` } className="row">{ cells }</div>
             );
         }
 
@@ -38,7 +47,11 @@ class PlayFieldView extends Component {
     }
 }
 PlayFieldView.propTypes = {
-    playField: PropTypes.instanceOf(PlayField).isRequired
+    playField: PropTypes.instanceOf(PlayField).isRequired,
+    onCellSelect: PropTypes.func
+};
+PlayFieldView.defaultProps = {
+    onCellSelect: function() {}
 };
 
 export default PlayFieldView;

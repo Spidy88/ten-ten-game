@@ -2,6 +2,7 @@ import PlayField from './play-field';
 import PlayerHand from './player-hand';
 import Position from './position';
 import Cell from './cell';
+import { getRandomPiece } from './pieces';
 
 const DEFAULT_GRID_SIZE = 10;
 const DEFAULT_HAND_SIZE = 3;
@@ -9,9 +10,6 @@ const DEFAULT_HAND_SIZE = 3;
 // TODO: Use these
 const MIN_GRID_SIZE = 5;
 const MIN_HAND_SIZE = 1;
-
-// TODO: REMOVE
-import { SmallCorner, SmallLine, Dot } from './pieces';
 
 class Game {
     constructor(gridSize = DEFAULT_GRID_SIZE, handSize = DEFAULT_HAND_SIZE) {
@@ -35,24 +33,18 @@ class Game {
     }
 
     reloadPlayerHand() {
-        /*
         while( this.playerHand.getHandSize() < this.maxHandSize ) {
-            // TODO: Generate random piece with random rotation
-            // TODO: Give to player
+            let piece = getRandomPiece();
+            this.playerHand.givePiece(piece);
         }
-        */
-
-        // TODO: REMOVE
-        let piece = new SmallLine();
-        piece.rotate(1);
-        this.playerHand.givePiece(new SmallCorner());
-        this.playerHand.givePiece(piece);
-        this.playerHand.givePiece(new Dot());
     }
 
     // Places a piece on the play field
     placePiece(piece, position) {
+        console.log('Placing piece: ', piece);
+        
         if( !this.canPlacePiece(piece, position) ) {
+            console.log('Piece cannot be placed');
             return false;
         }
 
@@ -73,8 +65,15 @@ class Game {
             }
         }
 
+        // TODO: Update score
+        this.scorePlayField();
 
-        // TODO: Remove piece from player hand
+        // Remove piece from player hand
+        this.playerHand.takePiece(piece);
+
+        if( !this.playerHand.pieces.length ) {
+            this.reloadPlayerHand();
+        }
 
         return true;
     }
@@ -113,6 +112,52 @@ class Game {
         }
 
         return true;
+    }
+
+    // Clears complete rows and columns, and scores it
+    scorePlayField() {
+        let rows = [];
+        let cols = [];
+
+        for(let i = 0; i < this.playField.size; i++ ) {
+            rows[i] = true;
+            cols[i] = true;
+        }
+
+        for(let row = 0; row < this.playField.size; row++ ) {
+            for(let col = 0; col < this.playField.size; col++ ) {
+                let position = new Position(row, col);
+                if( this.playField.isEmptyAt(position) ) {
+                    console.log(`Cannot clear row ${row} or column ${col}`);
+                    rows[row] = false;
+                    cols[col] = false;
+                }
+            }
+        }
+
+        let cleared = 0;
+        for(let i = 0; i < this.playField.size; i++ ) {
+            if( rows[i] ) {
+                console.log(`Clearing row ${i}`);
+                for(let col = 0; col < this.playField.size; col++ ) {
+                    this.playField.grid[i][col].isEmpty = true;
+                    this.playField.grid[i][col].color = null;
+                }
+                cleared++;
+            }
+
+            if( cols[i] ) {
+                console.log(`Clearing column $[i}`);
+                for(let row = 0; row < this.playField.size; row++ ) {
+                    this.playField.grid[row][i].isEmpty = true;
+                    this.playField.grid[row][i].color = null;
+                }
+                cleared++;
+            }
+        }
+
+        // TODO: Update score
+        console.log('Cleared: ', cleared);
     }
 
     // Return true if game is over

@@ -3,8 +3,14 @@ import Piece, { FILL_SYMBOL } from './piece';
 export class Dot extends Piece {
     constructor(color) {
         super(1, 1, color);
+
+        // [x]
         
         this.shape[0][0] = FILL_SYMBOL;
+    }
+
+    rotate() {
+        // Dot is always same shape
     }
 }
 
@@ -12,8 +18,8 @@ export class SmallCorner extends Piece {
     constructor(color) {
         super(2, 2, color);
         
-        //  [x][ ]
-        //  [x][x]
+        // [x][ ]
+        // [x][x]
         
         this.shape[0][0] = FILL_SYMBOL;
         this.shape[1][0] = FILL_SYMBOL;
@@ -37,9 +43,23 @@ export class LargeCorner extends Piece {
     }
 }
 
-export class SmallLine extends Piece {
+class LinePiece extends Piece {
+    constructor(height, color) {
+        super(1, height, color);
+    }
+
+    rotate(times) {
+        if( times % 2 === 0 ) {
+            return;
+        }
+
+        super.rotate(times);
+    }
+}
+
+export class SmallLine extends LinePiece {
     constructor(color) {
-        super(1, 2, color);
+        super(2, color);
 
         // [x]
         // [x]
@@ -49,9 +69,9 @@ export class SmallLine extends Piece {
     }
 }
 
-export class MediumLine extends Piece {
+export class MediumLine extends LinePiece {
     constructor(color) {
-        super(1, 3, color);
+        super(3, color);
 
         // [x]
         // [x]
@@ -63,9 +83,9 @@ export class MediumLine extends Piece {
     }
 }
 
-export class LargeLine extends Piece {
+export class LargeLine extends LinePiece {
     constructor(color) {
-        super( 1, 4, color );
+        super(4, color);
 
         // [x]
         // [x]
@@ -79,9 +99,9 @@ export class LargeLine extends Piece {
     }
 }
 
-export class GiantLine extends Piece {
+export class GiantLine extends LinePiece {
     constructor(color) {
-        super(1, 5, color);
+        super(5, color);
 
         // [x]
         // [x]
@@ -109,6 +129,10 @@ export class SmallBox extends Piece {
         this.shape[1][0] = FILL_SYMBOL;
         this.shape[1][1] = FILL_SYMBOL;
     }
+
+    rotate() {
+        // Squares always same shape
+    }
 }
 
 export class LargeBox extends Piece {
@@ -128,6 +152,10 @@ export class LargeBox extends Piece {
         this.shape[2][0] = FILL_SYMBOL;
         this.shape[2][1] = FILL_SYMBOL;
         this.shape[2][2] = FILL_SYMBOL;
+    }
+
+    rotate() {
+        // Squares always same shape
     }
 }
 
@@ -159,4 +187,26 @@ export class LeftL extends Piece {
         this.shape[2][0] = FILL_SYMBOL;
         this.shape[2][1] = FILL_SYMBOL;
     }
+}
+
+const PIECES = [
+    Dot,
+    SmallLine,
+    MediumLine,
+    LargeLine,
+    GiantLine,
+    SmallCorner,
+    LargeCorner,
+    SmallBox,
+    LargeBox,
+    RightL,
+    LeftL
+];
+export function getRandomPiece(allowsRotate = true) {
+    let piece = new (PIECES[Math.floor(Math.random() * PIECES.length)]);
+    let times = Math.floor(Math.random() * 4);
+
+    piece.rotate(times);
+
+    return piece;
 }

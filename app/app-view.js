@@ -18,10 +18,11 @@ class AppView extends Component {
         let isGameInProgress = true;
         let gameInstance = new Game(5);
 
-        let piece = new SmallCorner();
-        piece.rotate(2);
-        gameInstance.placePiece(new SmallCorner(), { row: 0, col: 0 });
-        gameInstance.placePiece(piece, { row: 2, col: 2 });
+        // let piece = new SmallCorner();
+        // piece.rotate(2);
+        // gameInstance.placePiece(new SmallCorner(), { row: 0, col: 0 });
+        // gameInstance.placePiece(piece, { row: 2, col: 2 });
+        window.game = gameInstance;
 
         this.setState({
             isGameInProgress,

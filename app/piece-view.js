@@ -8,6 +8,10 @@ class PieceView extends Component {
         super(props);
     }
 
+    onClick() {
+        this.props.onSelect(this.props.piece);
+    }
+
     render() {
         let piece = this.props.piece;
         let view = [];
@@ -19,22 +23,28 @@ class PieceView extends Component {
                 // TODO: Refactor once piece uses Cell
                 let cell = new Cell(piece.isEmptyAt({ row, col }), piece.color);
                 cells.push(
-                    <CellView cell={ cell }></CellView>
+                    <CellView key={ `cell-${row}.${col}` } cell={ cell }></CellView>
                 )
             }
 
-            view.push(<div>{ cells }</div>);
+            view.push(<div key={ `row-${row}` }>{ cells }</div>);
         }
 
         return (
-            <div className="player-piece">
+            <div className={ 'player-piece ' + this.props.className }
+                 onClick={ this.onClick.bind(this) }>
                 { view }
             </div>
         );
     }
 }
 PieceView.propTypes = {
-    piece: PropTypes.instanceOf(Piece).isRequired
+    piece: PropTypes.instanceOf(Piece).isRequired,
+    onSelect: PropTypes.func
 };
+PieceView.defaultProps = {
+    className: '',
+    onSelect: function() {}
+}
 
 export default PieceView;
