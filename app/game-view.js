@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import Game from './game';
+import { Game } from 'ten-ten';
 import PlayFieldView from './play-field-view';
 import PlayerHandView from './player-hand-view';
-import ScoreView from './score-view';
+import ScoreKeeperView from './score-keeper-view';
 
 class GameView extends Component {
     constructor(props) {
@@ -20,8 +20,6 @@ class GameView extends Component {
     }
 
     placePiece(cell, position) {
-        console.log('[GameView] placing piece');
-
         let game = this.props.game;
         let selectedPiece = this.state.selectedPiece;
 
@@ -44,16 +42,21 @@ class GameView extends Component {
     render() {
         let game = this.props.game;
         return (
-            <section>
-                <PlayFieldView playField={ game.playField }
-                               onCellSelect={ this.placePiece.bind(this) }>
+            <section className="game">
+                <PlayFieldView 
+                    playField={ game.playField }
+                    onCellSelect={ this.placePiece.bind(this) }>
                 </PlayFieldView>
 
-                <PlayerHandView playerHand={ game.playerHand }
-                                onPieceSelect={ this.selectPiece.bind(this) }>
-                </PlayerHandView>
+                <div className="lower-section">
+                    <PlayerHandView
+                        playerHand={ game.playerHand }
+                        onPieceSelect={ this.selectPiece.bind(this) }>
+                    </PlayerHandView>
 
-                <ScoreView></ScoreView>
+                    <ScoreKeeperView score={ game.scoreKeeper.score }>
+                    </ScoreKeeperView>
+                </div>
             </section>
         );
     }

@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import Game from './game';
+import { Game } from 'ten-ten';
 import GameView from './game-view';
 
-import {SmallCorner} from './pieces';
-
+// TODO: Look into logging options
 class AppView extends Component {
     constructor(props) {
         super(props);
@@ -18,10 +17,7 @@ class AppView extends Component {
         let isGameInProgress = true;
         let gameInstance = new Game(5);
 
-        // let piece = new SmallCorner();
-        // piece.rotate(2);
-        // gameInstance.placePiece(new SmallCorner(), { row: 0, col: 0 });
-        // gameInstance.placePiece(piece, { row: 2, col: 2 });
+        // TODO: Remove
         window.game = gameInstance;
 
         this.setState({

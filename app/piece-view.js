@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Piece from './piece';
-import Cell from './cell';
+import { Piece, Cell } from 'ten-ten';
 import CellView from './cell-view';
 
 class PieceView extends Component {

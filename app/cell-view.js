@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Cell from './cell';
+import { Cell } from 'ten-ten';
 
 class CellView extends Component {
     constructor(props) {

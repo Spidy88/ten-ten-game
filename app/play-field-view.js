@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import CellView from './cell-view';
-import PlayField from './play-field';
-import Position from './position';
+import { PlayField, Position } from 'ten-ten';
 
 class PlayFieldView extends Component {
     constructor(props) {
@@ -9,7 +8,6 @@ class PlayFieldView extends Component {
     }
 
     selectCell(cell, position) {
-        console.log('[PlayFieldView] Cell selected');
         this.props.onCellSelect(cell, position);
     }
 

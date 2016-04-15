@@ -1,5 +1,5 @@
 {
-  "name": "ten-ten",
+  "name": "ten-ten-react",
   "version": "1.0.0",
   "description": "A fun tetris-like game",
   "main": "index.js",
@@ -39,6 +39,7 @@
     "webpack": "1.12.14"
   },
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "ten-ten": "github:spidy88/ten-ten"
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import PlayerHand from './player-hand';
+import { PlayerHand } from 'ten-ten';
 import PieceView from './piece-view';
 
 class PlayerHandView extends Component {
