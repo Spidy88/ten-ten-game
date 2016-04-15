@@ -7,16 +7,6 @@
     background-size: cover;
 }
 
-.playfield .cell {
-    transition: transform;
-    transition-duration: 0.4s;
-    transform: scale(0);
-}
-
-.playfield .cell.ready {
-    transform: scale(1);
-}
-
 .block_blue {
     background-image: url('/images/block_blue.png');
 }

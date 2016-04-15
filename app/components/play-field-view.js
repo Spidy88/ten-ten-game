@@ -38,7 +38,7 @@ class PlayFieldView extends Component {
         }
 
         return (
-            <section>
+            <section className="playfield">
                 { field }
             </section>
         );

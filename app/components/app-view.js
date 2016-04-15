@@ -15,7 +15,7 @@ class AppView extends Component {
 
     startGame() {
         let isGameInProgress = true;
-        let gameInstance = new Game(5);
+        let gameInstance = new Game();
 
         // TODO: Remove
         window.game = gameInstance;
