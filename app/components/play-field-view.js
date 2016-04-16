@@ -25,7 +25,7 @@ class PlayFieldView extends Component {
 
                 cells.push(
                     <div key={ `cell-${row}.${col}` } 
-                         className="dib"
+                         className="cell-container df flex-col"
                          onClick={ this.selectCell.bind(this, cell, position) }>
                         <CellView cell={ cell }></CellView>
                     </div>
@@ -33,12 +33,12 @@ class PlayFieldView extends Component {
             }
 
             field.push(
-                <div key={ `row-${row}` } className="row">{ cells }</div>
+                <div key={ `row-${row}` } className="df flex-row center-children">{ cells }</div>
             );
         }
 
         return (
-            <section className="playfield">
+            <section className="playfield pal">
                 { field }
             </section>
         );

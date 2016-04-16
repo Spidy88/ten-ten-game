@@ -1,3 +1,16 @@
+$primary-bg: #03A9F4;
+$game-bg: white;
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 11px;
+$spacing-lg: 14px;
+$spacing-xl: 18px;
+
+html, body {
+    background-color: $primary-bg
+}
+
 .cell {
     display: inline-block;
     width: 32px;
@@ -33,28 +46,103 @@
 .player-piece {
     display: inline-block;
     padding: 20px 10px;
+
+    &.selected {
+        background-color: $primary-bg;
+    }
+
+    .cell {
+        outline: initial;
+    }
 }
 
-.player-piece.selected {
-    background-color: rgb(195, 231, 255);
+.mam {
+    margin: $spacing-md;
+}
+
+.ptl {
+    padding-top: $spacing-lg;
+}
+
+.pbl {
+    padding-bottom: $spacing-lg;
+}
+
+.pll {
+    padding-bottom: $spacing-lg;
+}
+
+.prl {
+    padding-bottom: $spacing-lg;
+}
+
+.phl {
+    @extend .pll;
+    @extend .prl;
+}
+
+.pvl {
+    @extend .ptl;
+    @extend .pbl;
+}
+
+.pal {
+    @extend .pvl;
+    @extend .phl;
+}
+
+.df {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
 }
 
 .dib {
     display: inline-block;
 }
 
-.game .lower-section {
-    display: flex;
+.pos-abs {
+    position: absolute;
+}
+
+.fill {
+    width: 100%;
+    height: 100%;
+}
+
+.abs-fill {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.pos-rel {
+    position: relative;
+}
+
+.game {
+    background-color: $game-bg;
+
+    .lower-section {
+        display: flex;
+    }
 }
 
 .player-hand {
-    flex-shrink: 0;
-    flex-grow: 2;
+    @extend .mam;
 }
 
 .score-board {
-    flex-shrink: 0;
-    flex-grow: 1;
+    @extend .mam;
+    min-width: 100px;
+    min-height: 100px;
 }
 
 .total-score, .additional-score {
@@ -68,4 +156,31 @@
 
 .total-score {
     font-size: 2em;
+}
+
+.game-overlay {
+    background-color: $primary-bg;
+    opacity: 0.0;
+    transition: opacity 0.8s;
+    height: 0;
+    overflow: hidden;
+
+    &.active {
+        opacity: 1.0;
+        height: initial;
+    }
+
+    .message {
+        font-size: 1.5em;
+    }
+
+    .score {
+        font-size: 3em;
+    }
+}
+
+.center-children {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

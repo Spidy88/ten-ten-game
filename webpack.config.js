@@ -3,7 +3,8 @@ const path = require('path');
 module.exports = {
     entry: [
         'babel-polyfill',
-        'bootstrap-loader',
+//        'bootstrap-loader',
+        './app/sass/ten-ten.scss',
         './app/index.js'
     ],
     output: {
@@ -26,7 +27,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loaders: [ 'style', 'css', 'sass' ]
-            },
+            }/*,
             {
                 test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: "url?limit=10000"
@@ -39,7 +40,7 @@ module.exports = {
             {
                 test: /bootstrap-sass\/assets\/javascripts\//,
                 loader: 'imports?jQuery=jquery'
-            }
+            }*/
         ]
     }
 };

@@ -22,11 +22,13 @@ class PieceView extends Component {
                 // TODO: Refactor once piece uses Cell
                 let cell = new Cell(piece.isEmptyAt({ row, col }), piece.color);
                 cells.push(
-                    <CellView key={ `cell-${row}.${col}` } cell={ cell }></CellView>
-                )
+                    <div key={ `cell-${row}.${col}` } className="df flex-col">
+                        <CellView cell={ cell }></CellView>
+                    </div>
+                );
             }
 
-            view.push(<div key={ `row-${row}` }>{ cells }</div>);
+            view.push(<div key={ `row-${row}` } className="df flex-row">{ cells }</div>);
         }
 
         return (

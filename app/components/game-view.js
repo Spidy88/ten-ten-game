@@ -48,7 +48,7 @@ class GameView extends Component {
                     onCellSelect={ this.placePiece.bind(this) }>
                 </PlayFieldView>
 
-                <div className="lower-section">
+                <div className="df center-children pal">
                     <PlayerHandView
                         playerHand={ game.playerHand }
                         onPieceSelect={ this.selectPiece.bind(this) }>
